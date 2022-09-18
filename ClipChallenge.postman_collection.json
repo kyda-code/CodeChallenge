@@ -1,0 +1,489 @@
+{
+	"info": {
+		"_postman_id": "cbf8b3a1-dc50-41c8-8a31-e356bca440d0",
+		"name": "ClipChallenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12931701"
+	},
+	"item": [
+		{
+			"name": "GetPayloads",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({",
+							"    url: pm.variables.get(\"base_url\")+\"/authenticate\",",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Accept': '*/*',",
+							"        'Content-Type': 'application/json'",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({'login' : pm.variables.get(\"login\"),",
+							"            'password': pm.variables.get(\"password\")})",
+							"        ",
+							"        ",
+							"    }",
+							"},",
+							"    (err, res) => {",
+							"        // Set access_token",
+							"        //console.log(res.json());",
+							"        pm.variables.set(\"access_token\", res.json().accessToken)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}{{base_microservices}}",
+					"host": [
+						"{{base_url}}{{base_microservices}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetReportPerUser",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({",
+							"    url: pm.variables.get(\"base_url\")+\"/authenticate\",",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Accept': '*/*',",
+							"        'Content-Type': 'application/json'",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({'login' : pm.variables.get(\"login\"),",
+							"            'password': pm.variables.get(\"password\")})       ",
+							"        ",
+							"    }",
+							"},",
+							"    (err, res) => {",
+							"        // Set access_token",
+							"        //console.log(res.json());",
+							"        pm.variables.set(\"access_token\", res.json().accessToken)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}{{base_microservices}}/getReportPerUser/user_1",
+					"host": [
+						"{{base_url}}{{base_microservices}}"
+					],
+					"path": [
+						"getReportPerUser",
+						"user_1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPayloadPerUserId",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({",
+							"    url: pm.variables.get(\"base_url\")+\"/authenticate\",",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Accept': '*/*',",
+							"        'Content-Type': 'application/json'",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({'login' : pm.variables.get(\"login\"),",
+							"            'password': pm.variables.get(\"password\")})",
+							"        ",
+							"        ",
+							"    }",
+							"},",
+							"    (err, res) => {",
+							"        // Set access_token",
+							"        //console.log(res.json());",
+							"        pm.variables.set(\"access_token\", res.json().accessToken)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}{{base_microservices}}/10001",
+					"host": [
+						"{{base_url}}{{base_microservices}}"
+					],
+					"path": [
+						"10001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePayload",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({",
+							"    url: pm.variables.get(\"base_url\")+\"/authenticate\",",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Accept': '*/*',",
+							"        'Content-Type': 'application/json'",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({'login' : pm.variables.get(\"login\"),",
+							"            'password': pm.variables.get(\"password\")})",
+							"        ",
+							"        ",
+							"    }",
+							"},",
+							"    (err, res) => {",
+							"        // Set access_token",
+							"        //console.log(res.json());",
+							"        pm.variables.set(\"access_token\", res.json().accessToken)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\" : \"user_1\",\n    \"amount\": 10001\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}{{base_microservices}}/10001",
+					"host": [
+						"{{base_url}}{{base_microservices}}"
+					],
+					"path": [
+						"10001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DisbursementProcess",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({",
+							"    url: pm.variables.get(\"base_url\")+\"/authenticate\",",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Accept': '*/*',",
+							"        'Content-Type': 'application/json'",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({'login' : pm.variables.get(\"login\"),",
+							"            'password': pm.variables.get(\"password\")})",
+							"        ",
+							"        ",
+							"    }",
+							"},",
+							"    (err, res) => {",
+							"        // Set access_token",
+							"        //console.log(res.json());",
+							"        pm.variables.set(\"access_token\", res.json().accessToken)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/clip/disbursementProcess",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clip",
+						"disbursementProcess"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePayload",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({",
+							"    url: pm.variables.get(\"base_url\")+\"/authenticate\",",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Accept': '*/*',",
+							"        'Content-Type': 'application/json'",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({'login' : pm.variables.get(\"login\"),",
+							"            'password': pm.variables.get(\"password\")})",
+							"        ",
+							"        ",
+							"    }",
+							"},",
+							"    (err, res) => {",
+							"        // Set access_token",
+							"        //console.log(res.json());",
+							"        pm.variables.set(\"access_token\", res.json().accessToken)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\" : \"user_1\",\n    \"amount\": 102\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}{{base_microservices}}",
+					"host": [
+						"{{base_url}}{{base_microservices}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"login\" : \"myuser@mail.com\",\n    \"password\" : \"oaisdjfpoiw\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/register",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticate",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"login\" : \"myuser@mail.com\",\n    \"password\" : \"oaisdjfpoiw\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/authenticate",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "base_microservices",
+			"value": "/api/clip",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "login",
+			"value": "myuser@mail.com",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "oaisdjfpoiw",
+			"type": "string"
+		}
+	]
+}
