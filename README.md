@@ -85,3 +85,47 @@ in-memory database, which means that data will not persist on the disk. Because 
 
 For more information:
 https://www.h2database.com/html/main.html
+
+## Docker Support
+The Maven Wrapper is an easy way to ensure a user of your Maven build has everything necessary to run your Maven build.
+
+Install the dependencies.
+```sh
+mvn -N wrapper:wrapper
+```
+
+Now we can run the application without the Docker container (that is, in the host OS):
+```sh
+./mvnw package && java -jar target/clip-0.0.1-SNAPSHOT.jar 
+```
+
+Dockerfile:
+Running applications with user privileges helps to mitigate some risks (see, for example, a thread on StackExchange). So, an important improvement to the Dockerfile is to run the application as a non-root user:
+
+```sh
+FROM amazoncorretto:11-alpine-jdk
+MAINTAINER Miguel Angel Sereno <msereno@kyda.mx>
+ENV APP_HOME /app
+
+# Run as non-root
+RUN addgroup -S appuser && adduser -S appuser -G appuser
+RUN mkdir -m 0755 -p ${APP_HOME}
+RUN mkdir -m 0755 -p ${APP_HOME}/bin
+RUN mkdir -m 0755 -p ${APP_HOME}/config
+RUN mkdir -m 0755 -p ${APP_HOME}/logs
+RUN chown -R appuser:appuser ${APP_HOME}
+USER appuser
+
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} ${APP_HOME}/bin/app.jar
+
+WORKDIR ${APP_HOME}
+ENTRYPOINT ["java","-jar","/app/bin/app.jar"]
+```
+
+Execute:
+```sh
+docker build -t clipio/clip-spring-boot-payments-docker .
+docker run -p 8080:8080 clipio/clip-spring-boot-payments-docker
+```
+
