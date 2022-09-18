@@ -59,3 +59,29 @@ The application contains different cases to testing:
 
 ## Postman:
 Contains a collection with Postman to generate the different use cases, each case has a script to add automatically the Bearer Token.
+
+## BigDecimal for Finance:
+Money or the type of monetary data is a fundamental part of many information systems; because the operations with it should be precise, and the roundings too.
+
+BigDecimal is an exact way of representing numbers, and allows you to work with greater precision than, for example, the double data type.
+
+## Swagger
+
+Swagger is widely used for visualizing APIs, and with Swagger UI it provides online sandbox for frontend developers. For this application we use Springfox implementation of the Swagger 2 specification.
+
+To access please click in the following link:
+http://localhost:8080/swagger-ui/index.html
+
+## Security 
+JSON Web Token, or JWT (“jot”) for short, is a standard for safely passing claims in space constrained environments. It has found its way into all1 major web frameworks. Simplicity,
+compactness and usability are key features of its architecture. Although much more complex systems are still in use, JWTs have a broad range of applications. 
+
+For more information:
+https://jwt.io/
+
+## Database
+H2 is an open-source lightweight Java database. It can be embedded in Java applications or run in the client-server mode. Mainly, H2 database can be configured to run as 
+in-memory database, which means that data will not persist on the disk. Because of embedded database it is not used for production development, but mostly used for development and testing.
+
+For more information:
+https://www.h2database.com/html/main.html
