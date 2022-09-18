@@ -36,9 +36,26 @@ The challenge consists of completing as many of the following steps as possible:
 4. Add security for the disbursement process endpoint.
 
 
-##Notes:
+## Notes:
 - The expected minimum is that you complete steps 1,2,3. 4 is optional  (Completing all is an extra).
 - We want see your skills and abilities to code so if at any moment you want to change or refactor anything go ahead.
 - We are considering as reviewers that your code challenge is code-prod-quality and it will review under this impression.
 - Please initialize the directory with the challenge as a git repo so you can commit new features and we check on your thought process.
 - Please upload the code-challenge to a git-repository and share the access with the reviewers thavt recruitment team indicates. 
+
+## Test Cases:
+The application contains different cases to testing:
+- Register Success: To generate a new user that is granted access.
+- Get All Payments Success: To get the array with all payments records.
+- Get Payments Unauthorized: To validate the security of the endpoint.
+- Get Payment Success: To get payment per id.
+- Get Payment Not Found: To validate is a payment exists.
+- Create Payment Success: To create a new payment return the id.
+- Create Payment Missing Field: To validate the request.
+- Update Payment Success: To update a payment.
+- Delete Payment Success: To delete a payment.
+- Get Report Per User: To get the summary of payments from a user.
+- Disbursement Process: To calculate the fee per payment and return the new amount.
+
+## Postman:
+Contains a collection with Postman to generate the different use cases, each case has a script to add automatically the Bearer Token.

@@ -114,7 +114,6 @@ public class PaymentResourceTest extends BaseIT {
                 .andExpect(jsonPath("$.newPaymentsAmount").value(300));
 
     }
-    //Disbursement Process
     @Test
     @Sql("/data/paymentDataUser.sql")
     public void disbursementProcess() throws Exception {
