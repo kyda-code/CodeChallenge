@@ -1,4 +1,6 @@
-DELETE FROM payment;
+DELETE
+FROM payment;
 
-DELETE FROM security;
+DELETE
+FROM security;
 

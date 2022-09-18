@@ -9,7 +9,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.example.clip.config.BaseIT;
+
 import java.math.BigDecimal;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -25,7 +27,7 @@ public class PaymentResourceTest extends BaseIT {
                         .header(HttpHeaders.AUTHORIZATION, bearerToken())
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].id").value(((long)1000)));
+                .andExpect(jsonPath("$[0].id").value(((long) 1000)));
     }
 
     @Test
@@ -87,7 +89,7 @@ public class PaymentResourceTest extends BaseIT {
                         .content(readResource("/requests/paymentDTORequest.json"))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
-        assertEquals(new BigDecimal("94.08"), paymentRepository.findById(((long)1000)).get().getAmount());
+        assertEquals(new BigDecimal("94.08"), paymentRepository.findById(((long) 1000)).get().getAmount());
         assertEquals(1, paymentRepository.count());
     }
 
@@ -99,6 +101,28 @@ public class PaymentResourceTest extends BaseIT {
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
         assertEquals(0, paymentRepository.count());
+    }
+
+    @Test
+    @Sql("/data/paymentDataUser.sql")
+    public void getReportByUser() throws Exception {
+        mockMvc.perform(get("/api/clip/getReportPerUser/user_1")
+                        .header(HttpHeaders.AUTHORIZATION, bearerToken())
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.newPaymentsSum").value(2))
+                .andExpect(jsonPath("$.newPaymentsAmount").value(300));
+
+    }
+    //Disbursement Process
+    @Test
+    @Sql("/data/paymentDataUser.sql")
+    public void disbursementProcess() throws Exception {
+        mockMvc.perform(put("/api/clip/disbursementProcess")
+                        .header(HttpHeaders.AUTHORIZATION, bearerToken())
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].disbursement").value("user_1 : 96.50"));
     }
 
 }
