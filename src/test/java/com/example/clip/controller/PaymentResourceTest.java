@@ -21,7 +21,7 @@ public class PaymentResourceTest extends BaseIT {
     @Test
     @Sql("/data/paymentData.sql")
     public void getAllPayments_success() throws Exception {
-        mockMvc.perform(get("/api/payments")
+        mockMvc.perform(get("/api/clip")
                         .header(HttpHeaders.AUTHORIZATION, bearerToken())
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -30,7 +30,7 @@ public class PaymentResourceTest extends BaseIT {
 
     @Test
     public void getAllPayments_unauthorized() throws Exception {
-        mockMvc.perform(get("/api/payments")
+        mockMvc.perform(get("/api/clip")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isUnauthorized())
                 .andExpect(jsonPath("$.exception").value("AccessDeniedException"));
@@ -39,7 +39,7 @@ public class PaymentResourceTest extends BaseIT {
     @Test
     @Sql("/data/paymentData.sql")
     public void getPayment_success() throws Exception {
-        mockMvc.perform(get("/api/payments/1000")
+        mockMvc.perform(get("/api/clip/1000")
                         .header(HttpHeaders.AUTHORIZATION, bearerToken())
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -48,7 +48,7 @@ public class PaymentResourceTest extends BaseIT {
 
     @Test
     public void getPayment_notFound() throws Exception {
-        mockMvc.perform(get("/api/payments/1666")
+        mockMvc.perform(get("/api/clip/1666")
                         .header(HttpHeaders.AUTHORIZATION, bearerToken())
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound())
@@ -57,7 +57,7 @@ public class PaymentResourceTest extends BaseIT {
 
     @Test
     public void createPayment_success() throws Exception {
-        mockMvc.perform(post("/api/payments")
+        mockMvc.perform(post("/api/clip")
                         .header(HttpHeaders.AUTHORIZATION, bearerToken())
                         .accept(MediaType.APPLICATION_JSON)
                         .content(readResource("/requests/paymentDTORequest.json"))
@@ -68,7 +68,7 @@ public class PaymentResourceTest extends BaseIT {
 
     @Test
     public void createPayment_missingField() throws Exception {
-        mockMvc.perform(post("/api/payments")
+        mockMvc.perform(post("/api/clip")
                         .header(HttpHeaders.AUTHORIZATION, bearerToken())
                         .accept(MediaType.APPLICATION_JSON)
                         .content(readResource("/requests/paymentDTORequest_missingField.json"))
@@ -81,7 +81,7 @@ public class PaymentResourceTest extends BaseIT {
     @Test
     @Sql("/data/paymentData.sql")
     public void updatePayment_success() throws Exception {
-        mockMvc.perform(put("/api/payments/1000")
+        mockMvc.perform(put("/api/clip/1000")
                         .header(HttpHeaders.AUTHORIZATION, bearerToken())
                         .accept(MediaType.APPLICATION_JSON)
                         .content(readResource("/requests/paymentDTORequest.json"))
@@ -94,7 +94,7 @@ public class PaymentResourceTest extends BaseIT {
     @Test
     @Sql("/data/paymentData.sql")
     public void deletePayment_success() throws Exception {
-        mockMvc.perform(delete("/api/payments/1000")
+        mockMvc.perform(delete("/api/clip/1000")
                         .header(HttpHeaders.AUTHORIZATION, bearerToken())
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
